@@ -74,7 +74,6 @@ export const INITIAL_STUDENTS: Student[] = [
     totalBilled: 48500,
     attendanceRate: 98,
     nemisStatus: 'Verified',
-    bloodGroup: 'O+',
     allergies: 'Peanuts (Mild)',
     photoUrl: ASSET_PATHS.studentAvatar,
     enrollmentDate: '2024-01-08'
@@ -98,7 +97,6 @@ export const INITIAL_STUDENTS: Student[] = [
     totalBilled: 32000,
     attendanceRate: 95,
     nemisStatus: 'Verified',
-    bloodGroup: 'A+',
     enrollmentDate: '2024-01-08'
   },
   {
@@ -122,7 +120,6 @@ export const INITIAL_STUDENTS: Student[] = [
     totalBilled: 51000,
     attendanceRate: 92,
     nemisStatus: 'Pending Validation',
-    bloodGroup: 'B+',
     allergies: 'Penicillin',
     enrollmentDate: '2023-01-09'
   },
@@ -147,7 +144,6 @@ export const INITIAL_STUDENTS: Student[] = [
     totalBilled: 51000,
     attendanceRate: 99,
     nemisStatus: 'Verified',
-    bloodGroup: 'AB+',
     enrollmentDate: '2023-01-09'
   },
   {
@@ -169,7 +165,6 @@ export const INITIAL_STUDENTS: Student[] = [
     totalBilled: 26000,
     attendanceRate: 94,
     nemisStatus: 'Verified',
-    bloodGroup: 'O+',
     enrollmentDate: '2025-01-06'
   },
   {
@@ -191,7 +186,6 @@ export const INITIAL_STUDENTS: Student[] = [
     totalBilled: 26000,
     attendanceRate: 100,
     nemisStatus: 'Verified',
-    bloodGroup: 'A-',
     allergies: 'Dust / Pollen asthma',
     enrollmentDate: '2025-01-06'
   },
@@ -214,7 +208,6 @@ export const INITIAL_STUDENTS: Student[] = [
     totalBilled: 22000,
     attendanceRate: 96,
     nemisStatus: 'Verified',
-    bloodGroup: 'O-',
     enrollmentDate: '2025-01-06'
   },
   {
@@ -236,7 +229,6 @@ export const INITIAL_STUDENTS: Student[] = [
     totalBilled: 19500,
     attendanceRate: 88,
     nemisStatus: 'Missing Certificate',
-    bloodGroup: 'B+',
     enrollmentDate: '2025-01-06'
   }
 ];

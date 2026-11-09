@@ -193,9 +193,6 @@ export const ClinicModule: React.FC = () => {
               <div key={s.id} className="p-3 bg-amber-50/50 rounded-lg border border-amber-200/70 text-xs space-y-1">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-amber-950">{s.firstName} {s.lastName}</span>
-                  <span className="font-mono text-[10px] font-bold text-amber-900 bg-white px-1.5 py-0.5 rounded border border-amber-300">
-                    Blood: {s.bloodGroup}
-                  </span>
                 </div>
                 <div className="text-[11px] text-amber-800 font-medium">
                   {s.allergies}

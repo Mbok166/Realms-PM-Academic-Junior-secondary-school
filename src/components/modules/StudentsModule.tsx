@@ -54,7 +54,6 @@ export const StudentsModule: React.FC = () => {
     boardingStatus: 'Day' as 'Day' | 'Boarder',
     dormitoryId: '',
     bedNo: '',
-    bloodGroup: 'O+',
     allergies: '',
     totalBilled: 32000,
     upiNo: '',
@@ -126,7 +125,6 @@ export const StudentsModule: React.FC = () => {
       boardingStatus: 'Day',
       dormitoryId: '',
       bedNo: '',
-      bloodGroup: 'O+',
       allergies: '',
       totalBilled: 32000,
       upiNo: '',
@@ -547,22 +545,7 @@ export const StudentsModule: React.FC = () => {
                 <h3 className="font-bold text-slate-800 uppercase tracking-wider text-[11px] mb-3">
                   {canAccessFinances ? '4. Medical Profile & Fee Setup' : '4. Learner Medical Profile'}
                 </h3>
-                <div className={`grid grid-cols-1 ${canAccessFinances ? 'sm:grid-cols-3' : 'sm:grid-cols-2'} gap-3`}>
-                  <div>
-                    <label className="block font-semibold text-slate-700 mb-1">Blood Group</label>
-                    <select
-                      value={formData.bloodGroup}
-                      onChange={(e) => setFormData({ ...formData, bloodGroup: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-slate-200 rounded-lg focus:outline-none"
-                    >
-                      <option value="O+">O+</option>
-                      <option value="A+">A+</option>
-                      <option value="B+">B+</option>
-                      <option value="AB+">AB+</option>
-                      <option value="O-">O-</option>
-                      <option value="A-">A-</option>
-                    </select>
-                  </div>
+                <div className={`grid grid-cols-1 ${canAccessFinances ? 'sm:grid-cols-2' : 'sm:grid-cols-1'} gap-3`}>
                   <div>
                     <label className="block font-semibold text-slate-700 mb-1">Allergies / Special Medical Notes</label>
                     <input
@@ -671,9 +654,10 @@ export const StudentsModule: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-slate-400 font-medium block">Medical Profile:</span>
-                  <span className="text-slate-700">Blood Group {activeProfileStudent.bloodGroup}</span>
-                  {activeProfileStudent.allergies && (
-                    <div className="text-rose-600 font-medium">{activeProfileStudent.allergies}</div>
+                  {activeProfileStudent.allergies ? (
+                    <span className="text-rose-600 font-medium">{activeProfileStudent.allergies}</span>
+                  ) : (
+                    <span className="text-slate-600 italic">No special medical notes</span>
                   )}
                 </div>
                 <div>

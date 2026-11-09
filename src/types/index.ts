@@ -44,7 +44,6 @@ export interface Student {
   totalBilled: number;
   attendanceRate: number; // percentage
   nemisStatus: 'Verified' | 'Pending Validation' | 'Missing Certificate';
-  bloodGroup: string;
   allergies?: string;
   photoUrl?: string;
   enrollmentDate: string;
