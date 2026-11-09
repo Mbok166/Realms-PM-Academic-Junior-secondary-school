@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix RealmsPM - School Management System",
+  "description": "Comprehensive school operations platform for RealmsPM: Student admissions, attendance, fees \u0026 financial management, CBC/KICD assessments, report cards, timetables, schemes of work, parent communication, boarding, clinic, staff \u0026 NEMIS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
