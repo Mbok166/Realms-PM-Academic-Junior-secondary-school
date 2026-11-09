@@ -31,6 +31,8 @@ export const FeesModule: React.FC = () => {
     currentTerm,
     academicYear,
     canAccessFinances,
+    isStudentRole,
+    currentStudentId,
     userRole,
     setUserRole,
     setActiveModule
@@ -41,7 +43,68 @@ export const FeesModule: React.FC = () => {
   const [isRecordModalOpen, setIsRecordModalOpen] = useState(false);
   const [selectedStudentForPay, setSelectedStudentForPay] = useState<Student | null>(null);
 
-  // Access check guard: only Principal and Bursar can view fees & finances
+  // If student role, allow seeing outstanding fee balance only
+  if (isStudentRole) {
+    const myStudent = students.find(s => s.id === currentStudentId) || students[0];
+    return (
+      <div className="max-w-xl mx-auto my-8 p-6 sm:p-8 bg-white rounded-2xl border border-slate-200 shadow-xl space-y-6 text-xs">
+        <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+          <div>
+            <h1 className="text-base font-bold text-slate-950">Student Fee Account Statement</h1>
+            <p className="text-slate-500">Term 1, {academicYear} · RealmsPM Finance Bureau</p>
+          </div>
+          <div className="text-right">
+            <span className="font-bold font-mono text-blue-900 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-200">
+              {myStudent.admissionNo}
+            </span>
+          </div>
+        </div>
+
+        <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-slate-600 font-medium">Learner Name:</span>
+            <span className="font-bold text-slate-900">{myStudent.firstName} {myStudent.lastName} ({myStudent.grade} {myStudent.stream})</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-slate-600 font-medium">Boarding Status:</span>
+            <span className="font-medium text-slate-800">{myStudent.boardingStatus}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-slate-600 font-medium">Total Billed Fees:</span>
+            <span className="font-mono font-bold text-slate-900">KES {myStudent.totalBilled.toLocaleString()}</span>
+          </div>
+        </div>
+
+        {/* Outstanding Balance Highlight */}
+        <div className="p-6 bg-blue-900 text-white rounded-2xl shadow-lg flex items-center justify-between">
+          <div>
+            <span className="text-xs uppercase tracking-wider text-blue-200 font-semibold block mb-1">
+              Outstanding Fee Balance
+            </span>
+            <div className="text-2xl sm:text-3xl font-black font-mono text-amber-300">
+              KES {myStudent.feeBalance.toLocaleString()}
+            </div>
+            <p className="text-[11px] text-blue-100 mt-1">
+              {myStudent.feeBalance === 0 ? 'Account fully cleared for Term 1.' : 'Please clear balance before end of term examinations.'}
+            </p>
+          </div>
+          <button
+            onClick={() => openPrintDoc({ type: 'feeReceipt', title: `Fee Statement - ${myStudent.firstName} ${myStudent.lastName}`, payload: { student: myStudent } })}
+            className="px-4 py-2.5 bg-white text-blue-900 hover:bg-blue-50 font-bold rounded-xl shadow-md transition-colors inline-flex items-center gap-1.5 shrink-0 cursor-pointer"
+          >
+            <Printer className="w-4 h-4" />
+            <span>Print Statement</span>
+          </button>
+        </div>
+
+        <div className="pt-2 text-center text-slate-400 text-[11px]">
+          For payment instructions (M-Pesa Paybill 888999 A/C {myStudent.admissionNo}), contact the School Bursar's office.
+        </div>
+      </div>
+    );
+  }
+
+  // Access check guard for remaining roles (Teachers, Nurses, Wardens, etc. - cannot see finances)
   if (!canAccessFinances) {
     return (
       <div className="max-w-2xl mx-auto my-12 p-8 bg-white rounded-2xl border border-slate-200 shadow-xl text-center space-y-6">
